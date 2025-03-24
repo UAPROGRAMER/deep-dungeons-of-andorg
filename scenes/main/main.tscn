@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4hljo6664ya4"]
+
+[ext_resource type="PackedScene" uid="uid://1v5teofmesl4" path="res://scenes/generator/generator.tscn" id="1_iuonh"]
+[ext_resource type="TileSet" uid="uid://bdm50faacewtf" path="res://data/tilesets/ground.tres" id="2_l3cfh"]
+[ext_resource type="TileSet" uid="uid://c2jh5vd0wrx34" path="res://data/tilesets/structures.tres" id="3_6q06x"]
+
+[node name="main" type="Node"]
+
+[node name="world" type="Node2D" parent="."]
+
+[node name="generator" parent="world" instance=ExtResource("1_iuonh")]
+
+[node name="ground" type="TileMapLayer" parent="world"]
+tile_set = ExtResource("2_l3cfh")
+
+[node name="structures" type="TileMapLayer" parent="world"]
+tile_set = ExtResource("3_6q06x")
+
+[node name="GUI" type="CanvasLayer" parent="."]

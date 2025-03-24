@@ -1,0 +1,71 @@
+[gd_scene load_steps=6 format=3 uid="uid://vyctbr4nynnh"]
+
+[ext_resource type="Script" uid="uid://d1g17c24t2hjn" path="res://scenes/debug/tools.gd" id="1_oa6p7"]
+[ext_resource type="TileSet" uid="uid://bdm50faacewtf" path="res://data/tilesets/ground.tres" id="1_pa0g8"]
+[ext_resource type="TileSet" uid="uid://c2jh5vd0wrx34" path="res://data/tilesets/structures.tres" id="2_oa6p7"]
+[ext_resource type="Script" uid="uid://v6uy2wfhdxdp" path="res://scenes/classes/cam.gd" id="3_hxnlu"]
+[ext_resource type="Script" uid="uid://1ff4mlrukhyf" path="res://scenes/debug/right_menu.gd" id="5_hxnlu"]
+
+[node name="debug" type="Node"]
+
+[node name="tools" type="Node2D" parent="."]
+script = ExtResource("1_oa6p7")
+metadata/_custom_type_script = "uid://d1g17c24t2hjn"
+
+[node name="world" type="Node2D" parent="."]
+texture_filter = 1
+
+[node name="ground" type="TileMapLayer" parent="world"]
+tile_set = ExtResource("1_pa0g8")
+
+[node name="structures" type="TileMapLayer" parent="world"]
+tile_set = ExtResource("2_oa6p7")
+
+[node name="camera" type="Camera2D" parent="world"]
+offset = Vector2(160, 120)
+script = ExtResource("3_hxnlu")
+metadata/_custom_type_script = "uid://v6uy2wfhdxdp"
+
+[node name="gui" type="CanvasLayer" parent="."]
+
+[node name="right_menu" type="Control" parent="gui"]
+texture_filter = 1
+layout_mode = 3
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -24.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 8
+script = ExtResource("5_hxnlu")
+
+[node name="background" type="Panel" parent="gui/right_menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ground" type="Button" parent="gui/right_menu"]
+layout_mode = 2
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 20.0
+offset_bottom = 20.0
+theme_override_font_sizes/font_size = 5
+text = "G"
+text_overrun_behavior = 1
+
+[node name="structures" type="Button" parent="gui/right_menu"]
+offset_left = 4.0
+offset_top = 24.0
+offset_right = 20.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 5
+text = "S"
+text_overrun_behavior = 1
+
+[connection signal="pressed" from="gui/right_menu/ground" to="gui/right_menu" method="_on_ground_pressed"]
+[connection signal="pressed" from="gui/right_menu/structures" to="gui/right_menu" method="_on_structures_pressed"]
