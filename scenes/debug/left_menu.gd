@@ -15,5 +15,7 @@ func _on_tools_new_tool_signal(tool: Tools.TOOLS_ENUM) -> void:
 			label.text += "EXITS"
 		Tools.TOOLS_ENUM.SAVE:
 			label.text += "SAVE"
+		Tools.TOOLS_ENUM.CORRIDORS:
+			label.text += "CORRIDORS"
 		_:
 			label.text += "???"

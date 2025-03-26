@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://vyctbr4nynnh"]
+[gd_scene load_steps=14 format=3 uid="uid://vyctbr4nynnh"]
 
 [ext_resource type="Script" uid="uid://d1g17c24t2hjn" path="res://scenes/debug/tools.gd" id="1_oa6p7"]
 [ext_resource type="TileSet" uid="uid://bdm50faacewtf" path="res://data/tilesets/ground.tres" id="1_pa0g8"]
@@ -27,6 +27,10 @@ region = Rect2(48, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ncueu"]
 atlas = ExtResource("6_v5q7w")
 region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8yrt0"]
+atlas = ExtResource("6_v5q7w")
+region = Rect2(32, 16, 16, 16)
 
 [node name="debug" type="Node"]
 
@@ -113,6 +117,7 @@ flat = true
 text_overrun_behavior = 1
 
 [node name="save" type="Button" parent="gui/right_menu"]
+layout_mode = 0
 offset_top = 72.0
 offset_right = 24.0
 offset_bottom = 96.0
@@ -122,6 +127,16 @@ theme_override_font_sizes/font_size = 5
 icon = SubResource("AtlasTexture_ncueu")
 flat = true
 text_overrun_behavior = 1
+
+[node name="corridor" type="Button" parent="gui/right_menu"]
+layout_mode = 0
+offset_top = 96.0
+offset_right = 24.0
+offset_bottom = 120.0
+focus_mode = 0
+mouse_filter = 1
+icon = SubResource("AtlasTexture_8yrt0")
+flat = true
 
 [node name="left_menu" type="Control" parent="gui"]
 texture_filter = 1
@@ -149,3 +164,4 @@ autowrap_mode = 1
 [connection signal="pressed" from="gui/right_menu/structures" to="gui/right_menu" method="_on_structures_pressed"]
 [connection signal="pressed" from="gui/right_menu/exits" to="gui/right_menu" method="_on_exits_pressed"]
 [connection signal="pressed" from="gui/right_menu/save" to="gui/right_menu" method="_on_save_pressed"]
+[connection signal="pressed" from="gui/right_menu/corridor" to="gui/right_menu" method="_on_corridor_pressed"]

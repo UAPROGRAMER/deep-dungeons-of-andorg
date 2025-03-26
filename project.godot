@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Deep Dungeons of Andorg"
-run/main_scene="uid://vyctbr4nynnh"
+run/main_scene="uid://cj7eibaqk272r"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 

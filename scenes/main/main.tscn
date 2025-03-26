@@ -1,16 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://c4hljo6664ya4"]
+[gd_scene load_steps=5 format=3 uid="uid://c4hljo6664ya4"]
 
+[ext_resource type="Script" uid="uid://dl741bckyhgac" path="res://scenes/main/generator.gd" id="1_l3cfh"]
 [ext_resource type="TileSet" uid="uid://bdm50faacewtf" path="res://data/tilesets/ground.tres" id="2_l3cfh"]
 [ext_resource type="TileSet" uid="uid://c2jh5vd0wrx34" path="res://data/tilesets/structures.tres" id="3_6q06x"]
+[ext_resource type="Script" uid="uid://v6uy2wfhdxdp" path="res://scenes/classes/cam.gd" id="3_k2fmo"]
 
 [node name="main" type="Node"]
 
 [node name="world" type="Node2D" parent="."]
+texture_filter = 1
+
+[node name="generator" type="Node2D" parent="world"]
+script = ExtResource("1_l3cfh")
 
 [node name="ground" type="TileMapLayer" parent="world"]
 tile_set = ExtResource("2_l3cfh")
 
 [node name="structures" type="TileMapLayer" parent="world"]
 tile_set = ExtResource("3_6q06x")
+
+[node name="camera" type="Camera2D" parent="world"]
+position = Vector2(160, 120)
+script = ExtResource("3_k2fmo")
+metadata/_custom_type_script = "uid://v6uy2wfhdxdp"
 
 [node name="GUI" type="CanvasLayer" parent="."]
