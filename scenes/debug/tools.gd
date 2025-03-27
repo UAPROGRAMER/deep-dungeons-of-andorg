@@ -4,6 +4,7 @@ class_name Tools
 
 enum TOOLS_ENUM {
 	NONE,
+	MOVE,
 	GROUND,
 	STRUCTURES,
 	EXITS,
@@ -64,6 +65,9 @@ func _draw() -> void:
 func change_tool(new_tool: TOOLS_ENUM):
 	tool = new_tool
 	new_tool_signal.emit(new_tool)
+
+func tool_move(event: InputEvent) -> void:
+	pass
 
 func tool_ground(event: InputEvent) -> void:
 	var tile_coords := Global.get_tile_coords(get_global_mouse_position())
@@ -197,6 +201,8 @@ func _input(event: InputEvent) -> void:
 	
 	match tool:
 		TOOLS_ENUM.NONE:
+			return
+		TOOLS_ENUM.MOVE:
 			return
 		TOOLS_ENUM.GROUND:
 			return tool_ground(event)
