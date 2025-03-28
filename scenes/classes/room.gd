@@ -3,8 +3,8 @@ extends Resource
 class_name Room
 
 @export var size: Vector2i
-@export var ground: Dictionary[Vector2i, Vector2i]
-@export var structures: Dictionary[Vector2i, Vector2i]
+@export var ground: Array[Vector2i] = []
+@export var structures: Array[Vector2i] = []
 
 @export var north: Vector2i = Vector2i(-1, -1)
 @export var south: Vector2i = Vector2i(-1, -1)

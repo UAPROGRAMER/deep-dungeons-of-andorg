@@ -105,23 +105,10 @@ func save_room() -> void:
 	var room := Room.new()
 	room.size = save_rect.size
 	
-	var groundDict: Dictionary[Vector2i, Vector2i] = {}
 	for y in range(save_rect.size.y):
 		for x in range(save_rect.size.x):
-			var tileAtlasCoords := ground.get_cell_atlas_coords(Vector2i(
-				x+save_rect.position.x, y+save_rect.position.y))
-			if tileAtlasCoords != Vector2i(-1, -1):
-				groundDict[Vector2i(x, y)] = tileAtlasCoords
-	room.ground = groundDict
-	
-	var structuresDict: Dictionary[Vector2i, Vector2i] = {}
-	for y in range(save_rect.size.y):
-		for x in range(save_rect.size.x):
-			var tileAtlasCoords := structures.get_cell_atlas_coords(Vector2i(
-				x+save_rect.position.x, y+save_rect.position.y))
-			if tileAtlasCoords != Vector2i(-1, -1):
-				structuresDict[Vector2i(x, y)] = tileAtlasCoords
-	room.structures = structuresDict
+			room.ground.append(ground.get_cell_atlas_coords(Vector2i(x, y) + save_rect.position))
+			room.structures.append(structures.get_cell_atlas_coords(Vector2i(x, y)  + save_rect.position))
 	
 	if save_rect.has_point(north):
 		room.north = north - save_rect.position
@@ -139,13 +126,8 @@ func load_room(coords: Vector2i) -> void:
 	
 	for y in range(room.size.y):
 		for x in range(room.size.x):
-			ground.set_cell(coords + Vector2i(x, y), 0, room.ground[Vector2i(x, y)]
-			if room.ground.has(Vector2i(x, y)) else Vector2i(-1, -1))
-	
-	for y in range(room.size.y):
-		for x in range(room.size.x):
-			structures.set_cell(coords + Vector2i(x, y), 0, room.structures[Vector2i(x, y)]
-			if room.structures.has(Vector2i(x, y)) else Vector2i(-1, -1))
+			ground.set_cell(coords + Vector2i(x, y), 0, room.ground[x + y * room.size.x])
+			structures.set_cell(coords + Vector2i(x, y), 0, room.structures[x + y * room.size.x])
 
 func tool_save(event: InputEvent) -> void:
 	var tile_coords := Global.get_tile_coords(get_global_mouse_position())
